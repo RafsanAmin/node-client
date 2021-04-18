@@ -2,12 +2,16 @@ $("#haha").click(function () {
   $("div > div").html("");
 });
 
-allPost();
+getData({});
 
-function allPost() {
+function getData(clue) {
+  let send = clue;
+
   $.ajax({
     type: "GET",
-    url: "https://rafsanamin.herokuapp.com/db/all",
+    url: "https://rafsanamin.herokuapp.com/db/",
+    data: send,
+    dataType: "json",
     success: function (data) {
       $(".data-table").empty();
       data.forEach((elem) => {
@@ -15,28 +19,6 @@ function allPost() {
           `<tr><td class="name">${elem.name}</td><td class="id">${elem._id}</td><td><button onclick="delData($(this).parent().parent())">Delete</button></td></tr>`,
         );
       });
-    },
-  });
-}
-function getData() {
-  let nama = $("#get").val();
-  let send = { name: nama };
-
-  $.ajax({
-    type: "GET",
-    url: "https://rafsanamin.herokuapp.com/db",
-    data: send,
-    dataType: "json",
-    success: function (data) {
-      if (data.length < 1) {
-        $(".status").html(`<h5>Data Not Found</h5>`);
-      } else {
-        $(".status").html(
-          `<h5>Your name is ${data[0].name}</h5><h5>Your Id is ${data[0]._id}</h5>`,
-        );
-      }
-      $("input").val("");
-      allPost();
     },
   });
 }
@@ -52,7 +34,7 @@ function postData() {
     success: function (data, textStatus, jQxhr) {
       $(".added").html(`<h5>Your name is ${data.ma}</h5>`);
       $("input").val("");
-      allPost();
+      getData({});
     },
   });
 }
@@ -74,7 +56,7 @@ function putData() {
         $(".change-status").html(`<h5> Data Updated as ${data.name}`);
       }
       $("input").val("");
-      allPost();
+      getData({});
     },
   });
 }
@@ -87,7 +69,7 @@ function delData(elem) {
     url: "https://rafsanamin.herokuapp.com/db",
     data: send,
     success: function () {
-      allPost();
+      getData({});
     },
   });
 }
