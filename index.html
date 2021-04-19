@@ -47,6 +47,14 @@
   </style>
 
   <body>
+    <br /><br />
+    <div>
+      <h2>Authentication</h2>
+      <input type="text" class="auth" />
+      <button onclick="auth()">Authenticate</button>
+      <div class="authc"></div>
+    </div>
+    <br /><br />
     <div>
       <table>
         <thead>
@@ -62,9 +70,7 @@
       <h1>Add Data</h1>
       <input id="add" type="text" />
       <button onclick="postData()">Add</button>
-      <div class="added">
-        <h1></h1>
-      </div>
+      <div class="added"></div>
     </div>
     <br /><br /><br />
     <div>
@@ -72,9 +78,7 @@
       <input id="prev" type="text" placeholder="previous" />
       <input id="new" type="text" placeholder="new" />
       <button onclick="putData()">Change</button>
-      <div class="change-status">
-        <h1></h1>
-      </div>
+      <div class="change-status"></div>
     </div>
     <br /><br /><br />
     <br />
